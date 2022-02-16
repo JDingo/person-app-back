@@ -1,0 +1,26 @@
+[
+  {
+    "firstName": "Pekka",
+    "lastName": "Hyvärinen",
+    "age": 60,
+    "id": "1"
+  },
+  {
+    "firstName": "Sami",
+    "lastName": "Salami",
+    "age": 14,
+    "id": "2"
+  },
+  {
+    "firstName": "Liisa",
+    "lastName": "Loskanen",
+    "age": 34,
+    "id": "3"
+  },
+  {
+    "firstName": "Anna",
+    "lastName": "Tulla",
+    "age": 56,
+    "id": "4"
+  }
+]
