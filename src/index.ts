@@ -1,12 +1,13 @@
 import express from 'express';
 import cors from 'cors';
 import personRouter from './routes/persons';
+import 'dotenv/config';
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 
-const PORT = 3001;
+const PORT = process.env.PORT;
 
 app.get('/ping', (_req, res) => {
   console.log('someone pinged here');

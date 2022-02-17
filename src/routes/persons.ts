@@ -5,20 +5,26 @@ import { NewPerson } from '../types';
 const router = express.Router();
 
 router.get('/', (_req, res) => {
-  console.log("All fetched!");
-  res.send(personService.getPersons());
+  personService.getPersons()
+    .then(persons => {
+      res.json(persons);
+    })
+    .catch(e => {
+      console.error(e);
+    });
 });
 
 router.post('/', (req, res) => {
   try {
     const personData = req.body as NewPerson;
     const newPerson: NewPerson = personService.validatePersonData(personData);
-    const addedPerson = personService.addPerson(newPerson);
-
-    console.log("Person", addedPerson, "added!");
-
-    res.json(addedPerson);
-  } catch (error: unknown) {
+    personService.addPerson(newPerson).then(addedPerson => {
+      res.json(addedPerson);
+    }).catch(e => {
+      console.log(e);
+    });
+  } 
+  catch (error: unknown) {
     if (error instanceof Error) {
       res.status(400).send(error.message);
     }
