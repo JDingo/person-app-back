@@ -4,3 +4,5 @@ export interface Person {
   age: number;
   id: string;
 }
+
+export type NewPerson = Omit<Person, "id">;
