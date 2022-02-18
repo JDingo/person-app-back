@@ -9,9 +9,19 @@ router.get('/', (_req, res) => {
     .then(persons => {
       res.json(persons);
     })
-    .catch(e => {
-      console.error(e);
+    .catch(error => {
+      console.error(error);
+      res.sendStatus(404);
     });
+});
+
+router.get('/:id', (req, res) => {
+  personService.getPerson(req.params.id).then(person => {
+    res.json(person);
+  }).catch(error => {
+    console.error(error);
+    res.sendStatus(404);
+  });
 });
 
 router.post('/', (req, res) => {

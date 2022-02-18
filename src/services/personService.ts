@@ -26,6 +26,16 @@ const getPersons = async (): Promise<Array<Person>> => {
   return persons;
 };
 
+const getPerson = async (id: string): Promise<Person> => {
+  const person = await PersonModel.findById(id);
+  
+  if (!person) {
+    throw new Error("Not found!");
+  }
+
+  return person;
+};
+
 const addPerson = async (newPersonData: NewPerson): Promise<Person> => {
   const newPerson: Person = { ...newPersonData, id: uuid() };
   const newPersonModel = new PersonModel(newPerson);
@@ -36,6 +46,7 @@ const addPerson = async (newPersonData: NewPerson): Promise<Person> => {
 
 export default {
   getPersons,
+  getPerson,
   addPerson,
   validatePersonData
 };
