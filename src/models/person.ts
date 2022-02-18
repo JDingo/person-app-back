@@ -4,7 +4,6 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const url = process.env.MONGODB_URI;
-console.log('connecting to', url);
 
 if (!url) {
   console.error("Invalid url");

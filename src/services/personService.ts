@@ -5,7 +5,7 @@ import { isNumber, isString } from '../utils';
 
 import PersonModel from '../models/person';
 
-const validatePersonData = ({ firstName, lastName, age }: { firstName: unknown, lastName: unknown, age: unknown }): NewPerson => {
+const validateNewPerson = ({ firstName, lastName, age }: { firstName: unknown, lastName: unknown, age: unknown }): NewPerson => {
   if (!firstName || !lastName || !age) {
     throw new Error('Missing data');
   }
@@ -18,6 +18,23 @@ const validatePersonData = ({ firstName, lastName, age }: { firstName: unknown, 
     firstName,
     lastName,
     age
+  });
+};
+
+const validatePerson = ({ firstName, lastName, age, id }: { firstName: unknown, lastName: unknown, age: unknown, id: unknown }): Person => {
+  if (!firstName || !lastName || !age || !id ) {
+    throw new Error('Missing data');
+  }
+
+  if (!isString(firstName) || !isString(lastName) || !isNumber(age) || !isString(id)) {
+    throw new Error('Malformed data');
+  }
+
+  return ({
+    firstName,
+    lastName,
+    age,
+    id
   });
 };
 
@@ -44,9 +61,32 @@ const addPerson = async (newPersonData: NewPerson): Promise<Person> => {
   return addedPerson;
 };
 
+const editPerson = async (editPersonData: Person): Promise<Person> => {
+  const editedPerson = await PersonModel.findByIdAndUpdate(editPersonData.id, editPersonData, { new: true });
+
+  if (!editedPerson) {
+    throw new Error("Not found!");
+  }
+
+  return editedPerson;
+};
+
+const removePerson = async (id: string): Promise<Person> => {
+  const removedPerson = await PersonModel.findByIdAndRemove(id);
+
+  if (!removedPerson) {
+    throw new Error("Not found!");
+  }
+
+  return removedPerson;
+};
+
 export default {
   getPersons,
   getPerson,
+  editPerson,
   addPerson,
-  validatePersonData
+  removePerson,
+  validatePerson,
+  validateNewPerson
 };
