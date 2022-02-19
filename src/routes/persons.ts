@@ -49,7 +49,7 @@ router.put('/:id', (req, res) => {
   try {
     const personData = req.body as Person;
     const editPerson = personService.validatePerson(personData);
-    personService.addPerson(editPerson).then(editedPerson => {
+    personService.editPerson(editPerson).then(editedPerson => {
       res.json(editedPerson);
     }).catch(error => {
       console.log(error);
