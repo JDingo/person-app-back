@@ -34,7 +34,7 @@ router.post('/', (req, res) => {
       console.error(error);
       res.sendStatus(404);
     });
-  } 
+  }
   catch (error: unknown) {
     if (error instanceof Error) {
       res.status(400).send(error.message);
@@ -55,7 +55,7 @@ router.put('/:id', (req, res) => {
       console.log(error);
       res.sendStatus(404);
     });
-  } 
+  }
   catch (error: unknown) {
     if (error instanceof Error) {
       res.status(400).send(error.message);
@@ -67,21 +67,12 @@ router.put('/:id', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-  try {
-    personService.removePerson(req.params.id).then(() => {
-      res.sendStatus(204);
-    }).catch(error => {
-      console.log(error);
-      res.sendStatus(404);
-    });
-  } 
-  catch (error: unknown) {
-    if (error instanceof Error) {
-      res.status(400).send(error.message);
-    }
-    else {
-      res.status(400);
-    }
-  }
+  personService.removePerson(req.params.id).then(() => {
+    res.sendStatus(204);
+  }).catch(error => {
+    console.log(error);
+    res.sendStatus(404);
+  });
 });
+
 export default router;
