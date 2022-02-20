@@ -6,9 +6,18 @@ The backend manages calls to the backend's API. The API endpoints can be found i
 
 The backend uses TypeScript and runs on Node.js. It uses `mongoose`-library to model application data and interact with MongoDB database.
 
+The backend can be found here: [Backend](https://github.com/JDingo/person-app-front)
+
 ## Usage
 The application is hosted by Heroku. It can be accessed here: 
 https://person-app-netum.herokuapp.com.
+
+The backend supports
+  - adding a new person to the database.
+  - removing a person from the database.
+  - fetching all persons from the database.
+  - fetching a single person by id from the database.
+  - editing a person by id in the database.
 
 ### Installation
 To set up development environment:
